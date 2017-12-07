@@ -6,4 +6,10 @@ feature "Attack player 2" do
     expect(page).to have_content("Attack confirmed")
   end
 
-end
+  scenario 'attack and reduce player 2 hp' do
+    sign_in_and_play
+    click_link 'Attack'
+
+    expect(page).to have_content("Attack confirmed Sam 90 HP")
+  end
+ end
