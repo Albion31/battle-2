@@ -1,2 +1,2 @@
-require './app'
-run Battle
+require_relative './app'
+run BattleApp
