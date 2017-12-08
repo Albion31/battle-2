@@ -22,9 +22,11 @@ enable :sessions
 
   post '/attack' do
     @game = $game
+    while @game.player_1.hp > 0 || @game.player_2.hp >0
     params[:attack] == $game.player_1.name ?  @game.attack($game.player_1) : @game.attack($game.player_2)
-    session[:message] = "#{params[:attack]} has been attacked"
     redirect 'play'
+    end
+    session[:message] = "#{params[:attack]} has been attacked"
   end
 
   run! if app_file == $0

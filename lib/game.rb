@@ -12,4 +12,7 @@ class Game
     player.reduce_hp(Player::DEFAULT_DAMAGE)
   end
 
+  def turn
+    [@player_1.name, @player_2.name].sample
+  end
 end
