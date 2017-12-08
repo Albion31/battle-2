@@ -30,7 +30,7 @@ enable :sessions
   end
 
   post '/attack' do
-    @game = Game.new
+    @game = Game.new($player_1, $player_2)
 
     params[:attack] == $player_1.name ?  @game.attack($player_1) : @game.attack($player_2)
     session[:message] = "#{params[:attack]} has been attacked"

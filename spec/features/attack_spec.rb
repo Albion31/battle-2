@@ -1,4 +1,3 @@
-
 feature "Attack player 2" do
   scenario 'attack and get confirmation' do
     sign_in_and_play
