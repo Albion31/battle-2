@@ -9,35 +9,23 @@ enable :sessions
     erb(:index)
   end
 
-
   post '/names' do
-
-    $player_1 = Player.new(params[:player_1_name])
-    $player_2 = Player.new(params[:player_2_name])
-
+    $game = Game.new(Player.new(params[:player_1_name]), Player.new(params[:player_2_name]))
     redirect '/play'
   end
 
   get '/play' do
+    @game = $game
     @message = session[:message]
-    @player_1_name = $player_1.name
-    @player_2_name = $player_2.name
-
-    @player_1_hp = $player_1.hp
-    @player_2_hp= $player_2.hp
-
     erb :play
   end
 
   post '/attack' do
-    @game = Game.new($player_1, $player_2)
-
-    params[:attack] == $player_1.name ?  @game.attack($player_1) : @game.attack($player_2)
+    @game = $game
+    params[:attack] == $game.player_1.name ?  @game.attack($game.player_1) : @game.attack($game.player_2)
     session[:message] = "#{params[:attack]} has been attacked"
     redirect 'play'
   end
-
-
 
   run! if app_file == $0
 end

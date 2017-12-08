@@ -1,20 +1,20 @@
 
-<h1><%= @player_1_name %> vs. <%= @player_2_name %> </h1>
+<h1><%= @game.player_1.name %> vs. <%= @game.player_2.name %> </h1>
 
 <br>
-<h2> Player 1 <h2> <%= @player_1_name %>: <%= @player_1_hp %> HP
+<h2> Player 1 <h2> <%= @game.player_1.name%>: <%= @game.player_1.hp %> HP
 <br>
 
 <form action="/attack" method="post">
-  <button type="submit" value="<%= @player_2_name%>" name="attack">Attack P2</button>
+  <button type="submit" value="<%= @game.player_2.name%>" name="attack">Attack P2</button>
 </form>
 
 <br>
-<h2> Player 2 <h2> <%= @player_2_name %>: <%= @player_2_hp %> HP
+<h2> Player 2 <h2> <%= @game.player_2.name %>: <%= @game.player_2.hp %> HP
 
 <br>
 <form action="/attack" method="post">
-  <button type="submit" value="<%= @player_1_name%>" name="attack">Attack P1</button>
+  <button type="submit" value="<%= @game.player_1.name%>" name="attack">Attack P1</button>
 </form>
 
 <% if !!@message %>
