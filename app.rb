@@ -3,34 +3,38 @@ require './lib/player'
 require './lib/game'
 
 class BattleApp < Sinatra::Base
+enable :sessions
+
   get '/' do
     erb(:index)
   end
 
 
   post '/names' do
+
     $player_1 = Player.new(params[:player_1_name])
     $player_2 = Player.new(params[:player_2_name])
-    puts $player_1.inspect
-    puts $player_2.inspect
 
     redirect '/play'
   end
 
   get '/play' do
-    @player_1 = $player_1
-    @player_2 = $player_2
+    @message = session[:message]
+    @player_1_name = $player_1.name
+    @player_2_name = $player_2.name
 
+    @player_1_hp = $player_1.hp
+    @player_2_hp= $player_2.hp
 
     erb :play
   end
 
-  get '/attack' do
-    @player_1 = $player_1
-    @player_2 = $player_2
+  post '/attack' do
+    @game = Game.new
 
-    Game.new.attack(@player_2)
-    erb :attack
+    params[:attack] == $player_1.name ?  @game.attack($player_1) : @game.attack($player_2)
+    session[:message] = "#{params[:attack]} has been attacked"
+    redirect 'play'
   end
 
 

@@ -1,11 +1,22 @@
 
-<%= @player_1.name %> vs. <%= @player_2.name %>
-<br>
-<h2> Player 1 <h2>
-<%= @player_1.name %>
+<%= @player_1_name %> vs. <%= @player_2_name %>
 
 <br>
-<h2> Player 2 <h2>
-<%= @player_2.name %>
+<h2> Player 1 <h2> <%= @player_1_name %>: <%= @player_1_hp %> HP
 <br>
-<a href = "/attack" ><button>Attack</button></a>
+
+<form action="/attack" method="post">
+  <button type="submit" value="<%= @player_2_name%>" name="attack">Attack P2</button>
+</form>
+
+<br>
+<h2> Player 2 <h2> <%= @player_2_name %>: <%= @player_2_hp %> HP
+
+<br>
+<form action="/attack" method="post">
+  <button type="submit" value="<%= @player_1_name%>" name="attack">Attack P1</button>
+</form>
+
+<% if !!@message %>
+  <%= @message %>
+<% end %>
