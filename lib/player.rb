@@ -1,5 +1,5 @@
 class Player
-DEFAULT_HP = 100
+DEFAULT_HP = 40
 DEFAULT_DAMAGE = 10
 
   attr_reader :name
@@ -13,6 +13,4 @@ DEFAULT_DAMAGE = 10
   def reduce_hp(amount = DEFAULT_DAMAGE)
     @hp -= amount
   end
-
-
 end
